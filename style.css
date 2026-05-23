@@ -1,25 +1,68 @@
+* {
+    box-sizing: border-box;
+}
 
 body {
     background-color: #121212;
     color: white;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+    min-height: 100vh;
     margin: 0;
     background-image: radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 0);
     background-size: 20px 20px;
 }
 
 #app {
+    width: min(960px, calc(100% - 32px));
+    min-height: 100vh;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(300px, 420px);
+    gap: 28px;
+    align-items: center;
+    padding: 40px 0;
+}
+
+.lotto-panel,
+.contact-panel {
+    width: 100%;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: rgba(255, 255, 255, 0.06);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.28);
+    backdrop-filter: blur(8px);
+}
+
+.lotto-panel {
     text-align: center;
+    padding: 42px 28px;
+}
+
+.contact-panel {
+    padding: 28px;
+}
+
+h1,
+h2 {
+    margin: 0;
+    line-height: 1.2;
+    letter-spacing: 0;
+}
+
+h1 {
+    font-size: 36px;
+}
+
+h2 {
+    font-size: 24px;
+    margin-bottom: 22px;
 }
 
 #lotto-numbers {
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     gap: 10px;
+    min-height: 60px;
     margin: 30px 0;
 }
 
@@ -35,18 +78,103 @@ lotto-ball {
     box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
 }
 
-#generate-btn {
-    background-color: #6200ee;
+button {
     color: white;
     border: none;
-    padding: 15px 30px;
-    font-size: 18px;
-    border-radius: 25px;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: transform 0.2s, background-color 0.3s, box-shadow 0.3s;
+}
+
+button:hover {
+    transform: translateY(-1px);
+}
+
+#generate-btn,
+#partner-form button {
+    background-color: #6200ee;
     box-shadow: 0 5px 15px rgba(98, 0, 238, 0.4);
 }
 
-#generate-btn:hover {
+#generate-btn:hover,
+#partner-form button:hover {
     background-color: #7f39fb;
+}
+
+#generate-btn {
+    padding: 15px 30px;
+    font-size: 18px;
+    border-radius: 25px;
+}
+
+#partner-form {
+    display: grid;
+    gap: 14px;
+}
+
+#partner-form label {
+    display: grid;
+    gap: 7px;
+    color: rgba(255, 255, 255, 0.82);
+    font-size: 14px;
+    text-align: left;
+}
+
+#partner-form input,
+#partner-form textarea {
+    width: 100%;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    background: rgba(0, 0, 0, 0.24);
+    color: white;
+    border-radius: 8px;
+    padding: 12px 13px;
+    font: inherit;
+    outline: none;
+}
+
+#partner-form textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+#partner-form input:focus,
+#partner-form textarea:focus {
+    border-color: #69c8f2;
+    box-shadow: 0 0 0 3px rgba(105, 200, 242, 0.18);
+}
+
+#partner-form button {
+    width: 100%;
+    border-radius: 8px;
+    padding: 13px 16px;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+#partner-form button:disabled {
+    cursor: wait;
+    opacity: 0.68;
+    transform: none;
+}
+
+#form-status {
+    min-height: 20px;
+    margin: 0;
+    color: #b0d840;
+    font-size: 14px;
+}
+
+#form-status.error {
+    color: #ff7272;
+}
+
+@media (max-width: 760px) {
+    #app {
+        grid-template-columns: 1fr;
+        align-items: start;
+        padding: 24px 0;
+    }
+
+    h1 {
+        font-size: 30px;
+    }
 }

@@ -59,3 +59,36 @@ generateBtn.addEventListener('click', () => {
         lottoNumbersContainer.appendChild(lottoBall);
     });
 });
+
+const partnerForm = document.getElementById('partner-form');
+const formStatus = document.getElementById('form-status');
+
+partnerForm.addEventListener('submit', async (event) => {
+    event.preventDefault();
+
+    const submitButton = partnerForm.querySelector('button[type="submit"]');
+    submitButton.disabled = true;
+    formStatus.classList.remove('error');
+    formStatus.textContent = '문의가 전송 중입니다.';
+
+    try {
+        const response = await fetch(partnerForm.action, {
+            method: partnerForm.method,
+            body: new FormData(partnerForm),
+            headers: { Accept: 'application/json' }
+        });
+
+        if (!response.ok) {
+            throw new Error('Formspree request failed');
+        }
+
+        partnerForm.reset();
+        formStatus.textContent = '문의가 접수되었습니다.';
+    } catch (error) {
+        formStatus.classList.add('error');
+        formStatus.textContent = '전송에 실패했습니다. 잠시 후 다시 시도해 주세요.';
+    } finally {
+        submitButton.disabled = false;
+    }
+});
+
