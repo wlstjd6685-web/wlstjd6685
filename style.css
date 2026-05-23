@@ -10,6 +10,7 @@ body {
     margin: 0;
     background-image: radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 0);
     background-size: 20px 20px;
+    padding-bottom: 40px;
 }
 
 #app {
@@ -20,11 +21,12 @@ body {
     grid-template-columns: minmax(0, 1fr) minmax(300px, 420px);
     gap: 28px;
     align-items: center;
-    padding: 40px 0;
+    padding: 40px 0 28px;
 }
 
 .lotto-panel,
-.contact-panel {
+.contact-panel,
+.comments-panel {
     width: 100%;
     border: 1px solid rgba(255, 255, 255, 0.12);
     background: rgba(255, 255, 255, 0.06);
@@ -39,6 +41,16 @@ body {
 
 .contact-panel {
     padding: 28px;
+}
+
+.comments-panel {
+    width: min(960px, calc(100% - 32px));
+    margin: 0 auto;
+    padding: 28px;
+}
+
+#disqus_thread {
+    min-height: 280px;
 }
 
 h1,
